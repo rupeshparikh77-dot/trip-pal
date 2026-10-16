@@ -1,0 +1,18 @@
+# Render Blueprint — deploys trip-pal as a free web service.
+# In Render: New + → Blueprint → connect this repo. Render reads this file.
+services:
+  - type: web
+    name: trip-pal
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      # Starts in demo mode. Add these in the Render dashboard to go live.
+      - key: AMADEUS_CLIENT_ID
+        sync: false
+      - key: AMADEUS_CLIENT_SECRET
+        sync: false
+      - key: AMADEUS_ENV
+        value: test
